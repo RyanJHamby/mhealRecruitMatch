@@ -16,7 +16,7 @@
     <br />
 
     <div id="ExcelTable"></div>
-
+    <p id="a">hello</p>
     <script type="text/javascript">
         function UploadProcess() {
             var fileUpload = document.getElementById("TeamRankings");
@@ -53,7 +53,7 @@
             }
         };
         function GetTableFromExcel(data) {
-            document.write("hola")
+            document.getelementById("a").innerHTML = "hola"
             //Read the Excel File data in binary
             var workbook = XLSX.read(data, {
                 type: 'binary'
@@ -128,17 +128,6 @@
             ExcelTable.innerHTML = "";
             ExcelTable.appendChild(myTable);
         };
-        function printExcel() {
-            var x = document.getElementById("TeamRankings");
-            var text = "";
-            document.write(text)
-            var i;
-            for (i = 0; i < x.length; i++) {
-                text += x.elements[i].value + "<br>";
-            }
-            document.write(text)
-
-        }
     </script>
     <h2>Teams' rankings of applicants:</h2>
     <form action="/action_page.php">

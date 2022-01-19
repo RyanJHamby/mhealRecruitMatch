@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html>
 
-<head>mhealRecruitMatch</head>
+<head>
+    <title>mhealRecruitMatch</title>
+</head>
 
 <body>
-    <h1>M-HEAL Recruitment "The Match" program</h1>
+    <h1>M-HEAL Recruitment "The Match" Program</h1>
+    <h2>Applicants' rankings of teams:</h2>
+    <form action="/action_page.php">
+        <input type="file" id="TeamRankings" name="filename">
+        <input type="button" onclick="printExcel()" value="Print">
+    </form>
+    <textarea class="form-control" rows=35 cols=120 id="xlx_json"></textarea>
+    <script type="text/javascript">
+        function example() {
+            // Requiring the module
+            const reader = require('xlsx')
+
+            // Reading our test file
+            const file = reader.readFile('./test.xlsx')
+
+            let data = []
+
+            const sheets = file.SheetNames
+
+            for (let i = 0; i < sheets.length; i++) {
+                const temp = reader.utils.sheet_to_json(
+                    file.Sheets[file.SheetNames[i]])
+                temp.forEach((res) => {
+                    data.push(res)
+                })
+            }
+
+            // Printing data
+            document.write(data[0])
+        }
+        function printExcel() {
+            var x = document.getElementById("TeamRankings");
+            var text = "";
+            x.
+            var i;
+            for (i = 0; i < x.length; i++) {
+                text += x.elements[i].value + "<br>";
+            }
+            document.write(text)
+
+        }
+    </script>
+    <h2>Teams' rankings of applicants:</h2>
     <form action="/action_page.php">
         <input type="file" id="RecruitRankings" name="filename">
         <input type="submit">

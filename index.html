@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mhealRecruitMatch</title>
+    <script defer src="/script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+
+</head>
+<style>
+    label,
+    input {
+        margin: 20px;
+    }
+</style>
+
+<body>
+    <h1>M-HEAL Recruitment "The Match" Program</h1>
+    <h2>Applicants' rankings of teams:</h2>
+    <form id="TeamForm" action="/" method="GET">
+        <label><input type="file" id="TeamRankings" name="test" value="@test" width="100%"></label>
+        <label><input type="submit"></label>
+    </form>
+
+    <div id="ExcelTable"></div>
+    <p id="a"></p>
+
+    <h2>Teams' rankings of applicants:</h2>
+    <form id="ApplicantForm" action="/" method="GET">
+        <label><input type="file" id="ApplicantRankings" name="test" value="@test" width="100%"></label>
+        <label><input type="submit"></label>
+    </form>
+    <div id="ExcelTable2"></div>
+</body>
+
+</html>

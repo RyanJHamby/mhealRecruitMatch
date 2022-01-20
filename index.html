@@ -10,7 +10,7 @@
     <h2>Applicants' rankings of teams:</h2>
     <form action="/action_page.php">
         <input type="file" id="TeamRankings" name="filename">
-        <button onclick="UploadProcess()">print</button>
+        <button onclick="u()">print</button>
     </form>
 
     <br />
@@ -18,6 +18,9 @@
     <div id="ExcelTable"></div>
     <div id="a">hello</div>
     <script type="text/javascript">
+        function u() {
+            document.getelementById("a").innerHTML = "hola"
+        }
         function UploadProcess() {
             var fileUpload = document.getElementById("TeamRankings");
             document.getelementById("a").innerHTML = "hola"

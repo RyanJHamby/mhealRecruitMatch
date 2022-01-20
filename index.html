@@ -20,7 +20,7 @@
     <script type="text/javascript">
         function UploadProcess() {
             var fileUpload = document.getElementById("TeamRankings");
-
+            document.getelementById("a").innerHTML = "hola"
             //Validate whether File is valid Excel file.
             var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
             if (regex.test(fileUpload.value.toLowerCase())) {
@@ -53,7 +53,6 @@
             }
         };
         function GetTableFromExcel(data) {
-            document.getelementById("a").innerHTML = "hola"
             //Read the Excel File data in binary
             var workbook = XLSX.read(data, {
                 type: 'binary'

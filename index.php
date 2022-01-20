@@ -8,9 +8,10 @@
 <body>
     <h1>M-HEAL Recruitment "The Match" Program</h1>
     <h2>Applicants' rankings of teams:</h2>
-    <form action="/action_page.php">
+    <form action="/action_page.php" method="post">
         <!-- <input type="file" id="TeamRankings" name="filename"> -->
-        <button onclick="u()">print</button>
+        Name: <input type="text" name="name"><br>
+        <input type="submit">
     </form>
 
     <br />

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mhealRecruitMatch</title>
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>M-HEAL Recruitment "The Match" Program</h1>
+    <h3>Based on the Roth-Peranson (NRMP) Medical Residency matching algorithm</h3>
+    <a href="https://github.com/J-DM/Roth-Peranson">Algorithm Source: https://github.com/J-DM/Roth-Peranson</a>
+    <h2>FORMATTING</h2>
+    <div>
+        <p>Teams_Ranking_Applicants.csv must be formatted as below:</p>
+        <img src="/static/Teams_Rank_Applicants.png" alt="Teams Rank Applicants template">
+    </div>
+    <div>
+        <p>Applicants_Ranking_Teams.csv must be formatted as below:</p>
+        <img src="/static/Applicant_Ranks_Teams_Template.png" alt="Applicants Rank Teams template">
+    </div>
+    <div>
+        <p>Team_Places.csv must be formatted as below (column B is number of spots intending to fill. Do NOT include
+            alternates
+            in this count):</p>
+        <img src="/static/TeamPlaces.png" alt="Team Places template">
+    </div>
+    <div style="margin-right:50%">
+        <h2>IMPORTANT NOTES</h2>
+        <ul>
+            <li>Check spelling of all emails and teams (this is how the algorithm sorts--double check for typos)</li>
+            <li>Use ONLY lowercase letters for emails and teams</li>
+            <li>The Applicants_Ranking_Teams sheet, Teams_Ranking_Applicants sheet,
+                and Team_Places sheet should each be in a separate .csv file
+                (make 3 separate Google Sheets documents, one for each sheet and only that sheet, download as .csv)</li>
+            <li>Alternates should be listed in Teams_Ranking_Applicants sheet. The Team_Places sheet will take
+                care of the # of spots filled ultimately (i.e. teams should list all applicants top to bottom in
+                Teams_Ranking_Applicants, no need
+                to distinguish alternates anywhere besides listing the # of spots available in Team_Places)</li>
+            <li>This website will also notify the client which applicants did not match</li>
+            <li>Only applicants that are ranked by a team will be potentially accepted to a team</li>
+            <li>Only teams ranked by an applicant will be a potential match for the applicant</li>
+        </ul>
+
+    </div>
+
+    <h2>Teams' rankings of applicants (.csv format only):</h2>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="TeamRankings">
+        <div id="ExcelTable"></div>
+        <p id="a"></p>
+
+
+        <h2>Applicants' rankings of teams (.csv format only):</h2>
+        <!-- <form id="ApplicantForm" action="/" method="GET"> -->
+        <label><input type="file" name="ApplicantRankings"></label>
+
+        <div id="ExcelTable2"></div>
+        <h2>Teams # of spots (.csv format only):</h2>
+        <!-- <form id="SpotsForm" action="/" method="GET"> -->
+        <label><input type="file" name="Spots" width="100%"></label>
+
+        <br><br>
+        <!-- <form id="runButton" role="runButton"> -->
+        <button>Run Program</button>
+        <button name="clear">Clear</button>
+    </form>
+    <div>
+        <table>
+            {% for key, value in result.items() %}
+            <tr>
+                <th> {{ key }} </th>
+                <td> {{ value }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

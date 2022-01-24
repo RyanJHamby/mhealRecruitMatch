@@ -13,8 +13,6 @@ class DataInput(forms.Form):
 
 @app.route('/',methods = ['POST', 'GET'])
 def index():
-	if request.name == 'clear':
-		return render_template('index.html',result={})
 	if request.method == 'POST':
 		form = request.form
 		file_ptr = mhealMatch()

@@ -51,7 +51,7 @@
     </div>
 
     <h2>Teams' rankings of applicants (.csv format only):</h2>
-    <form action="/" method="POST" enctype="multipart/form-data">
+    <form action="/" method="POST" enctype="multipart/form-data" id="data">
         <input type="file" name="TeamRankings">
         <div id="ExcelTable"></div>
         <p id="a"></p>
@@ -68,8 +68,11 @@
 
         <br><br>
         <!-- <form id="runButton" role="runButton"> -->
-        <button>Run Program</button>
-        <button name="clear">Clear</button>
+        <input type="submit" value="Run Program">
+    </form>
+    <br><br>
+    <form action="/" method="GET">
+        <button>Clear Results</button>
     </form>
     <div>
         <table>

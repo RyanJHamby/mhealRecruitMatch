@@ -6,19 +6,19 @@ import requests
 
 app = Flask(__name__)
 
-	
 
 class DataInput(forms.Form):
 	file = forms.FileField()
 
 @app.route('/',methods = ['POST', 'GET'])
 def index():
+	if request.method == 'GET':
+		return render_template('index.html',result={})
 	if request.method == 'POST':
 		form = request.form
 		file_ptr = mhealMatch()
 		return render_template('index.html', result=file_ptr)
 	return render_template('index.html',result={})
-	#return send_file(file_pointer, as_attachment=True, attachment_filename="export.csv")
 
 def mhealMatch():
 	if bool(request.files): 
@@ -28,10 +28,8 @@ def mhealMatch():
 		match = MatchController(team, applicant, spots)
 		match.start_match()
 		results = match.results_dict()
-		print(results)
 		return results
-		# match.get_output_csv()
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+	app.run()

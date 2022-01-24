@@ -83,7 +83,6 @@ class MatchController():
     	# Takes csv data directories
         program_data_str = StringIO(program_data.decode('utf-8'))
         candidate_data_str = StringIO(candidate_data.decode('utf-8'))
-        print(candidate_data)
         self.program_data = pd.read_csv(program_data_str)
         self.candidate_data = pd.read_csv(candidate_data_str)
         self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
@@ -94,6 +93,7 @@ class MatchController():
 
         self.programs = {}
         self.candidates = {}
+        print(type(self.candidate_data))
         print(self.program_data)
         print(self.candidate_data)
         print(self.places_data)
@@ -113,7 +113,7 @@ class MatchController():
 
         for c in self.program_data.columns:
             choices = self.program_data[c].dropna().tolist()
-            choice_objects = [self.candidates[c] for c in choices]
+            choice_objects = [self.candidates[k] for k in choices] #changed c to k
             self.programs[c].choices = choice_objects
 
         for c in self.candidate_data:

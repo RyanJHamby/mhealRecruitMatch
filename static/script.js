@@ -5,38 +5,39 @@
 //     e.preventDefault()
 // })
 
+
 // const ApplicantForm = document.getElementById("ApplicantForm")
 // ApplicantForm.addEventListener("submit", (e) => {
 //     let messages = [];
 //     UploadProcessApplicant()
 //     e.preventDefault()
 // })
-$(function () {
-    $('button').click(function () {
-        var team = new FormData($('#TeamRankings')[0]);
-        var applicant = new FormData($('#ApplicantRankings')[0]);
-        var spots = new FormData($('#Spots')[0]);
-        var serverData = [{ "team": team, "applicant": applicant, "spots": spots }]
-        $.ajax({
-            url: '/',
-            data: serverData,
-            contentType: "application/json",
-            dataType: 'json',
-            type: 'POST',
-            success: function (response) {
-                document.getElementById("ExcelTable").innerHTML = "budsi"
-                alert("yay")
-                console.log(response);
-            },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-                document.getElementById("ExcelTable").innerHTML = "budsa"
-                console.log(xhr.responseText)
-                console.log("ahhh")
-            }
-        });
-    });
-});
+// $(function () {
+//     $('button').click(function () {
+//         var team = new FormData($('#TeamRankings')[0]);
+//         var applicant = new FormData($('#ApplicantRankings')[0]);
+//         var spots = new FormData($('#Spots')[0]);
+//         var serverData = [{ "team": team, "applicant": applicant, "spots": spots }]
+//         $.ajax({
+//             url: '/',
+//             data: serverData,
+//             contentType: "application/json",
+//             dataType: 'json',
+//             type: 'POST',
+//             success: function (response) {
+//                 document.getElementById("ExcelTable").innerHTML = "budsi"
+//                 alert("yay")
+//                 console.log(response);
+//             },
+//             error: function (xhr, status, error) {
+//                 alert(xhr.responseText);
+//                 document.getElementById("ExcelTable").innerHTML = "budsa"
+//                 console.log(xhr.responseText)
+//                 console.log("ahhh")
+//             }
+//         });
+//     });
+// });
 
 // const RunButton = document.getElementById("runButton")
 // RunButton.addEventListener("submit", (e) => {

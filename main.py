@@ -5,7 +5,7 @@ from django import forms
 import requests
 
 app = Flask(__name__)
-
+app.debug = True
 
 class DataInput(forms.Form):
 	file = forms.FileField()

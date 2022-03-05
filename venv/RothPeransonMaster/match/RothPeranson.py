@@ -1,5 +1,7 @@
 import pandas as pd
+import csv
 import sys
+import io
 if sys.version_info[0] < 3: 
     from StringIO import StringIO
 else:
@@ -83,12 +85,24 @@ class MatchController():
     	# Takes csv data directories
         program_data_str = StringIO(program_data.decode('utf-8'))
         candidate_data_str = StringIO(candidate_data.decode('utf-8'))
+        # print(program_data.splitlines())
+        # print(program_data_str)
+        # self.program_data = csv.reader(program_data_str, delimiter=',')
+
+        # for row in reader:
+        #     print(row)
+        # with open(program_data_str, newline='') as csvfile:
+        #     a = csv.DictReader(open(program_data))
+        #     for row in a:
+        #         print(row)
+        self.candidate_data = csv.reader(candidate_data_str, delimiter=',')
         self.program_data = pd.read_csv(program_data_str)
         self.candidate_data = pd.read_csv(candidate_data_str)
         self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
         self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
         if places_data:
             places_data_str = StringIO(places_data.decode('utf-8'))
+            # self.places_data = csv.reader(places_data_str, delimiter=',')
             self.places_data = pd.read_csv(places_data_str,names=[1,2],index_col=0)
 
         self.programs = {}

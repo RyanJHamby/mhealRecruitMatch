@@ -25,6 +25,7 @@ def mhealMatch():
 	# 	match.start_match()
 	# 	results = match.results_dict()
 	# 	return results
+		return 2
 
 
 if __name__ == '__main__':

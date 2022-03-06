@@ -25,7 +25,8 @@
     </div>
     <div>
         <p>Applicants_Ranking_Teams.csv must be formatted as below:</p>
-        <img src="./templates/static/Applicant_Ranks_Teams_Template.png" alt="Applicants Rank Teams template">
+        <img src="{{url_for('static', filename='Applicant_Ranks_Teams_Template.png')}}"
+            alt="Applicants Rank Teams template">
     </div>
     <div>
         <p>Team_Places.csv must be formatted as below (column B is number of spots intending to fill. Do NOT include

@@ -4,9 +4,9 @@
         {
             "src": "./index.py",
             "use": "@vercel/python"
-        }
+        },
         {
-            "src": "/static/**",
+            "src": "./templates/static/**",
             "use": "@vercel/static"
         }
     ],

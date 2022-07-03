@@ -14,13 +14,16 @@
     }
 
     table {
-        border: 1px solid;
+        table-layout: fixed;
+        width: 120px;
+        border: 1px solid red;
     }
 
-    th,
     td {
-        border: 1px solid;
-        width: 10px;
+        border: 1px solid blue;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 </style>
 

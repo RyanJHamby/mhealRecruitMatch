@@ -25,18 +25,16 @@
     <h1>M-HEAL Recruitment Matching Program</h1>
     <h3>Based on the Roth-Peranson (NRMP) Medical Residency matching algorithm</h3>
     <a href="https://github.com/J-DM/Roth-Peranson">Algorithm Source: https://github.com/J-DM/Roth-Peranson</a>
+    <a href="https://github.com/RyanJHamby/mhealRecruitMatch">This page's Git repo:
+        https://github.com/RyanJHamby/mhealRecruitMatch</a>
     <p>Both the applicants and teams will rank each other in this process.</p>
-    <p>NOTE: As long as M-HEAL only allows members to be on mulitple teams only if one is a project team (MESA/PeriOp,
-        etc) and one is a travel team (SANA/ECHO), run the travel team and project team algorithms separately!</p>
+    <p>NOTE: As long as M-HEAL separates the recruiting/placement of project and travel teams, run the travel team and
+        project team algorithms separately! (i.e. someone being placed on SANA travel team should not affect eligibility
+        for a travel team like MESA)</p>
     <h2>FORMATTING</h2>
 
-    <script>
-        function alertFunction() {
-            alert("Hello! I am an alert box!");
-        }
-    </script>
     <div>
-        <p>Teams_Ranking_Applicants.csv must be formatted as below:</p>
+        <p><b>Teams_Ranking_Applicants.csv</b> must be formatted as below:</p>
         <table style="width:50%">
             <tr>
                 <th>Team1Name</th>
@@ -83,7 +81,7 @@
         </table>
     </div>
     <div>
-        <p>Applicants_Ranking_Teams.csv must be formatted as below:</p>
+        <p><b>Applicants_Ranking_Teams.csv</b> must be formatted as below:</p>
         <table style="width:50%">
             <tr>
                 <th>a@umich.edu</th>
@@ -136,7 +134,8 @@
         </table>
     </div>
     <div>
-        <p>Team_Places.csv must be formatted as below (column B is number of spots intending to fill. Do NOT include
+        <p><b>Team_Places.csv</b> must be formatted as below (column B is number of spots intending to fill. Do NOT
+            include
             alternates
             in this count):</p>
         <table>
@@ -186,7 +185,10 @@
         </ul>
 
     </div>
-
+    <div style="border:1px solid blue">
+        <h3>Any issues with the input will be displayed in this box after you hit "run program".</h3>
+        <b style="color:red;">{{result.error}}</b>
+    </div>
     <h2>Teams' rankings of applicants (.csv format only):</h2>
     <form action="/" method="POST" enctype="multipart/form-data" id="data">
         <input type="file" name="TeamRankings">
@@ -213,12 +215,14 @@
     </form>
     <div>
         <table>
+            {% if not result.error %}
             {% for key, value in result.items() %}
             <tr>
                 <th> {{ key }} </th>
                 <td> {{ value }} </td>
             </tr>
             {% endfor %}
+            {% endif %}
         </table>
     </div>
 </body>

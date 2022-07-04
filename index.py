@@ -21,10 +21,17 @@ def mhealMatch():
 		applicant = request.files['ApplicantRankings'].read()
 		spots = request.files['Spots'].read()
 		match = MatchController(team, applicant, spots)
-		match.start_match()
+		results = {}
+		if match != "":
+			results["error"] = match
+			return results
+		match_error = match.start_match()
+		if match_error != "":
+			results["error"] = match_error
+			return match_error
 		results = match.results_dict()
 		return results
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(host="localhost", port=8000, debug=True)

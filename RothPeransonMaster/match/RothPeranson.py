@@ -89,8 +89,10 @@ class MatchController():
             program_data_str = program_data_str.lower()
             candidate_data_str = StringIO(candidate_data.decode('utf-8'))
             candidate_data_str = candidate_data_str.lower()
-            item.strip() for item in program_data_string.split(',')
-            item.strip() for item in candidate_data_string.split(',')
+            for item in program_data_string.split(','):
+                item.strip()
+            for item in candidate_data_string.split(','):
+                item.strip()
             # print(program_data.splitlines())
             # print(program_data_str)
             # self.program_data = csv.reader(program_data_str, delimiter=',')
@@ -141,11 +143,16 @@ class MatchController():
             for c in self.places_data:
                 print(c)
         except:
-            error_message = traceback.format_exc()
+            setup_error_message = traceback.format_exc()
+            return setup_error_message
 
     def start_match(self):
-        for k, v in self.candidates.items():
-            v.find_next()
+        try:
+            for k, v in self.candidates.items():
+                v.find_next()
+        except:
+            match_error_message = traceback.format_exc()
+            return match_error_message
 
     def print_results(self):
         for c in self.program_data.columns:
@@ -161,15 +168,19 @@ class MatchController():
                 print('    Did not match')
 
     def results_dict(self):
-        results_dict = {}
+        try:
+            results_dict = {}
 
-        for k, v in self.candidates.items():
-            try:
-                results_dict[k] = v.current_place.name
-            except AttributeError:
-                results_dict[k] = 'Did not match'
+            for k, v in self.candidates.items():
+                try:
+                    results_dict[k] = v.current_place.name
+                except AttributeError:
+                    results_dict[k] = 'Did not match'
 
-        return results_dict
+            return results_dict
+        except:
+            results_error_message = traceback.format_exc()
+            return results_error_message
 
     def get_output_csv(self):
         results = self.results_dict()

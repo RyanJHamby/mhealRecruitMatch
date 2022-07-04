@@ -6,6 +6,7 @@ if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
     from io import StringIO
+import traceback
 
 class Student():
 # Class representing someone making an application.
@@ -82,58 +83,65 @@ class MatchController():
 # in addition to controlling the match process and returning the final results.
 
     def __init__(self, program_data, candidate_data, places_data=None):
-    	# Takes csv data directories
-        program_data_str = StringIO(program_data.decode('utf-8'))
-        candidate_data_str = StringIO(candidate_data.decode('utf-8'))
-        # print(program_data.splitlines())
-        # print(program_data_str)
-        # self.program_data = csv.reader(program_data_str, delimiter=',')
+        try:
+            # Takes csv data directories
+            program_data_str = StringIO(program_data.decode('utf-8'))
+            program_data_str = program_data_str.lower()
+            candidate_data_str = StringIO(candidate_data.decode('utf-8'))
+            candidate_data_str = candidate_data_str.lower()
+            item.strip() for item in program_data_string.split(',')
+            item.strip() for item in candidate_data_string.split(',')
+            # print(program_data.splitlines())
+            # print(program_data_str)
+            # self.program_data = csv.reader(program_data_str, delimiter=',')
 
-        # for row in reader:
-        #     print(row)
-        # with open(program_data_str, newline='') as csvfile:
-        #     a = csv.DictReader(open(program_data))
-        #     for row in a:
-        #         print(row)
-        self.candidate_data = csv.reader(candidate_data_str, delimiter=',')
-        self.program_data = pd.read_csv(program_data_str)
-        self.candidate_data = pd.read_csv(candidate_data_str)
-        self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
-        self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
-        if places_data:
-            places_data_str = StringIO(places_data.decode('utf-8'))
-            # self.places_data = csv.reader(places_data_str, delimiter=',')
-            self.places_data = pd.read_csv(places_data_str,names=[1,2],index_col=0)
-
-        self.programs = {}
-        self.candidates = {}
-        print(type(self.candidate_data))
-        print(self.program_data)
-        print(self.candidate_data)
-        print(self.places_data)
-        for c in self.program_data.columns:
-            print(c)
-            print(self.program_data.columns)
-            print(self.places_data.loc[c].at[2])
+            # for row in reader:
+            #     print(row)
+            # with open(program_data_str, newline='') as csvfile:
+            #     a = csv.DictReader(open(program_data))
+            #     for row in a:
+            #         print(row)
+            self.candidate_data = csv.reader(candidate_data_str, delimiter=',')
+            self.program_data = pd.read_csv(program_data_str)
+            self.candidate_data = pd.read_csv(candidate_data_str)
+            self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
+            self.candidate_data = self.candidate_data.drop(self.candidate_data.index[0])
             if places_data:
-                self.programs[c] = Program(c, self.places_data.loc[c].at[2])
-            else:
-                self.programs[c] = Program(c)
+                places_data_str = StringIO(places_data.decode('utf-8'))
+                # self.places_data = csv.reader(places_data_str, delimiter=',')
+                self.places_data = pd.read_csv(places_data_str,names=[1,2],index_col=0)
 
-        for c in self.candidate_data.columns:
-            choices = self.candidate_data[c].dropna().tolist()
-            choice_objects = [self.programs[p] for p in choices]
-            self.candidates[c] = Student(c, choice_objects)
+            self.programs = {}
+            self.candidates = {}
+            print(type(self.candidate_data))
+            print(self.program_data)
+            print(self.candidate_data)
+            print(self.places_data)
+            for c in self.program_data.columns:
+                print(c)
+                print(self.program_data.columns)
+                print(self.places_data.loc[c].at[2])
+                if places_data:
+                    self.programs[c] = Program(c, self.places_data.loc[c].at[2])
+                else:
+                    self.programs[c] = Program(c)
 
-        for c in self.program_data.columns:
-            choices = self.program_data[c].dropna().tolist()
-            choice_objects = [self.candidates[k] for k in choices] #changed c to k
-            self.programs[c].choices = choice_objects
+            for c in self.candidate_data.columns:
+                choices = self.candidate_data[c].dropna().tolist()
+                choice_objects = [self.programs[p] for p in choices]
+                self.candidates[c] = Student(c, choice_objects)
 
-        for c in self.candidate_data:
-            print(c)
-        for c in self.places_data:
-            print(c)
+            for c in self.program_data.columns:
+                choices = self.program_data[c].dropna().tolist()
+                choice_objects = [self.candidates[k] for k in choices] #changed c to k
+                self.programs[c].choices = choice_objects
+
+            for c in self.candidate_data:
+                print(c)
+            for c in self.places_data:
+                print(c)
+        except:
+            error_message = traceback.format_exc()
 
     def start_match(self):
         for k, v in self.candidates.items():

@@ -37,11 +37,11 @@ def mhealMatch():
 	setup_error = match.organize_candidates(spots)
 	if setup_error != "":
 		results["error"] = setup_error
-		return results
+		# return results
 	match_error = match.start_match()
 	if match_error != "":
 		results["error"] = match_error
-		return results
+		# return results
 	results = match.results_dict()
 	return results
 

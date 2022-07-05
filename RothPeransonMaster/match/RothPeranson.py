@@ -86,7 +86,6 @@ class MatchController():
         # Takes csv data directories
         program_data_str = StringIO(program_data.decode('utf-8').lower().replace(' ', '').replace('\n','').replace('\t',''))
         candidate_data_str = StringIO(candidate_data.decode('utf-8').lower().replace(' ','').replace('\n','').replace('\t',''))
-        # print(program_data.splitlines())
         # print(program_data_str)
         # self.program_data = csv.reader(program_data_str, delimiter=',')
 

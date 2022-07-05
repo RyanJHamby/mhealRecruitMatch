@@ -6,7 +6,7 @@ if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
     from io import StringIO
-# import traceback
+import traceback
 
 class Student():
 # Class representing someone making an application.

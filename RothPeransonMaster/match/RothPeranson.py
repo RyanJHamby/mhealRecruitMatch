@@ -88,7 +88,6 @@ class MatchController():
         candidate_data_str = StringIO(candidate_data.decode('utf-8').lower().replace(' ','').replace('\n','').replace('\t',''))
         # print(program_data_str)
         # self.program_data = csv.reader(program_data_str, delimiter=',')
-
         # for row in reader:
         #     print(row)
         # with open(program_data_str, newline='') as csvfile:

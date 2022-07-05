@@ -138,8 +138,7 @@ class MatchController():
 
             for c in self.program_data.columns:
                 choices = self.program_data[c].dropna().tolist()
-                choice_objects = [self.candidates[k]
-                                  for k in choices]  # changed c to k
+                choice_objects = [self.candidates[k] for k in choices]  # changed c to k
                 self.programs[c].choices = choice_objects
 
             for c in self.candidate_data:

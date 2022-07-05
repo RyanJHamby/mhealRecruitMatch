@@ -35,11 +35,11 @@ def mhealMatch():
 	spots = request.files['Spots'].read()
 	match = MatchController(team, applicant, spots)
 	setup_error = match.organize_candidates(spots)
-	if setup_error != "":
+	if setup_error != "None":
 		results["error"] = setup_error
 		return results
 	match_error = match.start_match()
-	if match_error != "":
+	if match_error != "None":
 		results["error"] = match_error
 		return results
 	results = match.results_dict()

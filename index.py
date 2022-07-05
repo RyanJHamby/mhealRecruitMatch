@@ -17,6 +17,7 @@ def index():
 	return render_template('index.html',result={})
 
 def mhealMatch():
+	# render in results
 	results = {}
 	if request.files['TeamRankings'].filename == '':
 		results['error'] = "Please upload a valid Teams_Ranking_Applicants .csv file"

@@ -29,7 +29,7 @@ def mhealMatch():
 		return results
 	if request.files['Spots'].filename == '':
 		results['error'] = "Please upload a valid Team_Places .csv file"
-	return results
+		return results
 	team = request.files['TeamRankings'].read()
 	applicant = request.files['ApplicantRankings'].read()
 	spots = request.files['Spots'].read()

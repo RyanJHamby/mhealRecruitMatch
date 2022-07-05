@@ -216,14 +216,12 @@
     </form>
     <div>
         <table>
-            {% if result.error|length > 4 %}
-            {% for key, value in result.items() %}
-            <tr>
+            {% if result.error|length < 5 %} {% for key, value in result.items() %} <tr>
                 <th> {{ key }} </th>
                 <td> {{ value }} </td>
-            </tr>
-            {% endfor %}
-            {% endif %}
+                </tr>
+                {% endfor %}
+                {% endif %}
         </table>
     </div>
 </body>

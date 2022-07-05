@@ -216,7 +216,7 @@
     </form>
     <div>
         <table>
-            {% if result.error is None %}
+            {% if result.error|length > 4 %}
             {% for key, value in result.items() %}
             <tr>
                 <th> {{ key }} </th>

@@ -171,18 +171,19 @@ class MatchController():
                 print('    Did not match')
 
     def results_dict(self):
-        results_dict = {}
+        try:
+            results_dict = {}
 
-        for k, v in self.candidates.items():
-            try:
-                results_dict[k] = v.current_place.name
-            except AttributeError:
-                results_dict[k] = 'Did not match'
+            for k, v in self.candidates.items():
+                try:
+                    results_dict[k] = v.current_place.name
+                except AttributeError:
+                    results_dict[k] = 'Did not match'
 
-        return results_dict
-        # except:
-        #     results_error_message = traceback.format_exc()
-        #     return results_error_message
+            return results_dict
+        except:
+            results_error_message = traceback.format_exc()
+            return results_error_message
 
     def get_output_csv(self):
         results = self.results_dict()

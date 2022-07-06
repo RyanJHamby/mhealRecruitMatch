@@ -43,6 +43,7 @@ def mhealMatch():
 		results["error"] = match_error
 		return results
 	results = match.results_dict()
+	results["error"] = "banana"
 	return results
 
 
